@@ -104,6 +104,14 @@
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/awoo.ogg'
 
+/datum/emote/living/awoo
+	key = "awoo2"
+	key_third_person = "awoos"
+	message = "lets out an awoo!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/long_awoo.ogg'
+
 /datum/emote/living/nya
 	key = "nya"
 	key_third_person = "nyas"
@@ -400,6 +408,14 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/woof.ogg'
+
+/datum/emote/living/woof
+	key = "woof2"
+	key_third_person = "woofs"
+	message = "lets out a woof."
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/woof2.ogg'
 
 /datum/emote/living/baa
 	key = "baa"
