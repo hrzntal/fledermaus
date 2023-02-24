@@ -409,7 +409,7 @@
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/woof.ogg'
 
-/datum/emote/living/woof
+/datum/emote/living/woof2
 	key = "woof2"
 	key_third_person = "woofs"
 	message = "lets out a woof."
