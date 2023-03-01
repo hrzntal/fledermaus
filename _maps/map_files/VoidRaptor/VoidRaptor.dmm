@@ -36605,7 +36605,6 @@
 "kzU" = (
 /obj/machinery/light_switch/directional/south,
 /obj/effect/turf_decal/tile/blue/fourcorners,
-/obj/effect/turf_decal/box,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
@@ -65595,6 +65594,8 @@
 	},
 /obj/structure/curtain,
 /obj/structure/closet/secure_closet/medical2,
+/obj/effect/turf_decal/box,
+/obj/effect/turf_decal/box,
 /turf/open/floor/iron/freezer,
 /area/station/medical/treatment_center)
 "swu" = (
@@ -76402,7 +76403,6 @@
 /area/station/maintenance/port/fore)
 "vtT" = (
 /obj/effect/turf_decal/tile/blue/fourcorners,
-/obj/effect/turf_decal/box,
 /obj/machinery/firealarm/directional/south,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -80756,6 +80756,7 @@
 	},
 /obj/structure/curtain,
 /obj/structure/closet/secure_closet/medical2,
+/obj/effect/turf_decal/box,
 /turf/open/floor/iron/freezer,
 /area/station/medical/treatment_center)
 "wCm" = (
