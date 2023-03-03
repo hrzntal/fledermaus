@@ -113,6 +113,8 @@
 	var/uses = 1
 	/// Does the spawner delete itself when it runs out of uses?
 	var/deletes_on_zero_uses_left = TRUE
+	///if true, will not disable or delete when used.
+	var/infinite_uses = FALSE
 
 	////descriptions
 
@@ -183,7 +185,7 @@
 	if(!(GLOB.ghost_role_flags & GHOSTROLE_SPAWNER) && !(flags_1 & ADMIN_SPAWNED_1))
 		to_chat(user, span_warning("An admin has temporarily disabled non-admin ghost roles!"))
 		return
-	if(uses <= 0) //just in case
+	if(!infinite_uses && uses <= 0) //just in case
 		to_chat(user, span_warning("This spawner is out of charges!"))
 		return
 
@@ -226,7 +228,7 @@
 
 /// Checks if the spawner has zero uses left, if so, delete yourself... NOW!
 /obj/effect/mob_spawn/ghost_role/proc/check_uses()
-	if(!uses && deletes_on_zero_uses_left)
+	if(!uses && deletes_on_zero_uses_left && !infinite_uses)
 		qdel(src)
 
 ///override this to add special spawn conditions to a ghost role
