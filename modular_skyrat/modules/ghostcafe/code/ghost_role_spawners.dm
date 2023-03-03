@@ -9,7 +9,6 @@
 	name = "Cafe Robotic Storage"
 	prompt_name = "a ghost cafe robot"
 	uses = -1
-	infinite_uses = TRUE
 	icon = 'modular_skyrat/modules/ghostcafe/icons/robot_storage.dmi'
 	icon_state = "robostorage"
 	mob_name = "a cafe robot"
@@ -40,7 +39,6 @@
 	name = "Cafe Sleeper"
 	prompt_name = "a ghost cafe human"
 	uses = -1
-	infinite_uses = TRUE
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	mob_name = "a cafe visitor"
