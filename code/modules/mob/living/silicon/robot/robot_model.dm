@@ -746,30 +746,31 @@
 		/obj/item/assembly/flash/cyborg,
 		/obj/item/reagent_containers/cup/beaker/large, //I know a shaker is more appropiate but this is for ease of identification
 		//Skyrat Edit Start: Borg Buff
-		//obj/item/reagent_containers/condiment/enzyme, //edit
+		/obj/item/reagent_containers/condiment/enzyme,
 		/obj/item/pen,
-		/obj/item/toy/crayon/spraycan/borg,
 		/obj/item/extinguisher/mini,
-		/obj/item/hand_labeler/borg,
-		/obj/item/razor,
 		/obj/item/rsf,
-		/obj/item/instrument/guitar,
 		/obj/item/instrument/piano_synth,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/juice, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/soda, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/alcohol, //edit
 		/obj/item/reagent_containers/borghypo/borgshaker/specific/misc, //edit
-		/obj/item/reagent_containers/dropper,
 		/obj/item/lighter,
 		/obj/item/storage/bag/tray,
 		//obj/item/reagent_containers/borghypo/borgshaker, //edit
 		/obj/item/reagent_containers/syringe, //edit
 		/obj/item/cooking/cyborg/power, //edit
 		/obj/item/borg/lollipop,
-		/obj/item/stack/pipe_cleaner_coil/cyborg,
 		/obj/item/borg/apparatus/beaker/service,
-		/obj/item/chisel,
+		/obj/item/secateurs,
+		/obj/item/hatchet,
+		/obj/item/cultivator,
+		/obj/item/shovel/spade,
+		/obj/item/plant_analyzer,
+		/obj/item/storage/bag/plants/portaseeder,
+		/obj/item/borg/apparatus/service/seeder,
+		/obj/item/reagent_containers/cup/watering_can
 	)
 	radio_channels = list(RADIO_CHANNEL_SERVICE)
 	emag_modules = list(/obj/item/reagent_containers/borghypo/borgshaker/hacked)
