@@ -1,3 +1,6 @@
+/// Maximum jukebox volume in percent
+#define JUKEBOX_VOLUME_MAX 85
+
 SUBSYSTEM_DEF(jukeboxes)
 	name = "Jukeboxes"
 	wait = 5
@@ -6,18 +9,46 @@ SUBSYSTEM_DEF(jukeboxes)
 	var/list/freejukeboxchannels = list()
 
 /datum/track
-	var/song_name = "generic"
+	var/song_artist = "Unknown Artist"
+	var/song_title = "Unknown Title"
 	var/song_path = null
 	var/song_length = 0
 	var/song_beat = 0
-	var/song_associated_id = null
 
-/datum/track/New(name, path, length, beat, assocID)
-	song_name = name
+/datum/track/New(artist, title, path, length, beat)
+	song_artist = artist
+	song_title = title
 	song_path = path
 	song_length = length
 	song_beat = beat
-	song_associated_id = assocID
+
+/**
+ * Clear the tracklist and load songs from disk into the subsystem
+ */
+/datum/controller/subsystem/jukeboxes/proc/reload_tracks()
+	// We're *re*loading the tracklist, so remove everything
+	songs.Cut()
+
+	// Now we just add new tracks
+	load_tracks()
+
+/**
+ * Load songs from disk into the subsystem, only adding new
+ */
+/datum/controller/subsystem/jukeboxes/proc/load_tracks()
+	var/list/tracks_to_load = flist("[global.config.directory]/jukebox_music/sounds/")
+
+	for(var/song_file in tracks_to_load)
+		var/datum/track/track = new()
+		track.song_path = file("[global.config.directory]/jukebox_music/sounds/[song_file]")
+		var/list/song_data = splittext(song_file,"+")
+		if(song_data.len != 4)
+			continue
+		track.song_artist = song_data[1]
+		track.song_title = song_data[2]
+		track.song_length = (text2num(song_data[3]) SECONDS)
+		track.song_beat = ((text2num(song_data[4]) / 60) SECONDS)
+		songs |= track
 
 /datum/controller/subsystem/jukeboxes/proc/addjukebox(obj/machinery/jukebox/jukebox, datum/track/T, jukefalloff = 1)
 	if(!istype(T))
@@ -64,18 +95,8 @@ SUBSYSTEM_DEF(jukeboxes)
 	return FALSE
 
 /datum/controller/subsystem/jukeboxes/Initialize()
-	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")
-	for(var/S in tracks)
-		var/datum/track/T = new()
-		T.song_path = file("[global.config.directory]/jukebox_music/sounds/[S]")
-		var/list/L = splittext(S,"+")
-		if(L.len != 4)
-			continue
-		T.song_name = L[1]
-		T.song_length = text2num(L[2])
-		T.song_beat = text2num(L[3])
-		T.song_associated_id = L[4]
-		songs |= T
+	load_tracks()
+
 	for(var/i in CHANNEL_JUKEBOX_START to CHANNEL_JUKEBOX)
 		freejukeboxchannels |= i
 	return SS_INIT_SUCCESS
@@ -112,6 +133,10 @@ SUBSYSTEM_DEF(jukeboxes)
 			else
 				song_played.status = SOUND_MUTE | SOUND_UPDATE	//Setting volume = 0 doesn't let the sound properties update at all, which is lame.
 
-			M.playsound_local(currentturf, null, jukebox.volume, channel = jukeinfo[2], sound_to_use = song_played)
+			var/real_jukebox_volume = (jukebox.volume * (JUKEBOX_VOLUME_MAX / 100))
+
+			M.playsound_local(currentturf, null, real_jukebox_volume, channel = jukeinfo[2], sound_to_use = song_played)
 			CHECK_TICK
 	return
+
+#undef JUKEBOX_VOLUME_MAX
