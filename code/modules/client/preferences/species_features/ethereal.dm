@@ -13,9 +13,9 @@
 	ethereal_base.Blend(icon('icons/mob/species/ethereal/bodyparts.dmi', "ethereal_l_arm"), ICON_OVERLAY)
 	ethereal_base.Blend(icon('icons/mob/species/ethereal/bodyparts.dmi', "ethereal_r_arm"), ICON_OVERLAY)
 
-	var/icon/eyes = icon('icons/mob/species/human/human_face.dmi', "eyes")
-	eyes.Blend(COLOR_BLACK, ICON_MULTIPLY)
-	ethereal_base.Blend(eyes, ICON_OVERLAY)
+	//var/icon/eyes = icon('icons/mob/species/human/human_face.dmi', "eyes")
+	//eyes.Blend(COLOR_BLACK, ICON_MULTIPLY)
+	//ethereal_base.Blend(eyes, ICON_OVERLAY)
 
 	ethereal_base.Scale(64, 64)
 	ethereal_base.Crop(15, 64, 15 + 31, 64 - 31)
