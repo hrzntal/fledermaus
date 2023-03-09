@@ -10,10 +10,10 @@
 			var/mob/M = m
 			if(M.client?.prefs.read_preference(/datum/preference/toggle/sound_announcements) && M.can_hear())
 				if(override_volume)
-					M.playsound_local(get_turf(M), S, 80, FALSE)
+					M.playsound_local(get_turf(M), S, LOG_AUDIOVOLUME(80), FALSE)
 				else
 					var/area/A = get_area(M)
 					if(is_type_in_typecache(A, quiet_areas)) //These areas don't hear it as loudly
-						M.playsound_local(get_turf(M), S, 10, FALSE)
+						M.playsound_local(get_turf(M), S, LOG_AUDIOVOLUME(10), FALSE)
 					else
-						M.playsound_local(get_turf(M), S, 70, FALSE)
+						M.playsound_local(get_turf(M), S, LOG_AUDIOVOLUME(70), FALSE)

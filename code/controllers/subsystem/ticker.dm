@@ -760,7 +760,10 @@ SUBSYSTEM_DEF(ticker)
 	if(!round_end_sound)
 		round_end_sound = choose_round_end_song()
 	///The reference to the end of round sound that we have chosen.
-	var/sound/end_of_round_sound_ref = sound(round_end_sound)
+	var/sound/end_of_round_sound_ref = sound(
+		file = round_end_sound,
+		volume = LOG_AUDIOVOLUME(50),
+	)
 	for(var/mob/M in GLOB.player_list)
 		if(M.client.prefs.read_preference(/datum/preference/toggle/sound_endofround))
 			SEND_SOUND(M.client, end_of_round_sound_ref)

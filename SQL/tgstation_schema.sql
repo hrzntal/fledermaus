@@ -641,7 +641,7 @@ CREATE TABLE `discord_links` (
 	`discord_id` BIGINT(20) DEFAULT NULL,
 	`timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`one_time_token` VARCHAR(100) NOT NULL,
-  	`valid` BOOLEAN NOT NULL DEFAULT FALSE,
+  `valid` BOOLEAN NOT NULL DEFAULT FALSE,
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
