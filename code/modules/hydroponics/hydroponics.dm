@@ -95,11 +95,11 @@
 
 	// If we DO have a seed, we can do a few things!
 
-	// With a hand we can harvest or remove dead plants
-	// If the plant's not in either state, we can't do much else, so early return.
-	if(isnull(held_item))
-		// Silicons can't interact with trays :frown:
-		if(issilicon(user))
+// With a hand we can harvest or remove dead plants
+    // If the plant's not in either state, we can't do much else, so early return.
+	if(isnull(held_item) || istype(held_item, /obj/item/storage/bag/plants/portaseeder))
+        // Silicons can't interact with trays :frown:
+		if(issilicon(user) && isnull(held_item))
 			return NONE
 
 		switch(plant_status)
@@ -1045,11 +1045,13 @@
 	return ..()
 
 /obj/machinery/hydroponics/attack_hand(mob/user, list/modifiers)
-	. = ..()
-	if(.)
-		return
-	if(issilicon(user)) //How does AI know what plant is?
-		return
+	if(issilicon(user))
+		if(iscyborg(user))
+			var/mob/living/silicon/robot/hydroborgie = user
+			if(!istype(hydroborgie.module_active, /obj/item/storage/bag/plants/portaseeder))
+				return
+		if(!iscyborg(user))
+			return
 	if(plant_status == HYDROTRAY_PLANT_HARVESTABLE)
 		return myseed.harvest(user)
 
@@ -1089,6 +1091,9 @@
 		reagents.clear_reagents()
 		to_chat(user, span_warning("You empty [src]'s nutrient tank."))
 	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+
+/obj/machinery/hydroponics/attack_robot_secondary(mob/user)
+	return attack_hand_secondary(user)
 
 /**
  * Update Tray Proc

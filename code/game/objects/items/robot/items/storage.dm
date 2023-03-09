@@ -162,7 +162,9 @@
 	desc = "A special apparatus for carrying drinks without spilling the contents. Will resynthesize any drinks you pour out!"
 	icon_state = "borg_beaker_apparatus"
 	storable = list(/obj/item/reagent_containers/cup/glass,
-					/obj/item/reagent_containers/condiment)
+					/obj/item/reagent_containers/condiment,
+					/obj/item/reagent_containers/cup/beaker,
+					/obj/item/reagent_containers/cup/bottle)
 
 /obj/item/borg/apparatus/beaker/service/add_glass()
 	stored = new /obj/item/reagent_containers/cup/glass/drinkingglass(src)
@@ -182,6 +184,22 @@
 		return
 	handle_reflling(arrived)
 	return ..()
+
+/obj/item/borg/apparatus/service/seeder
+	name = "seeder apparatus"
+	desc = "A special apparatus for sowing seeds and pacing them appropriately from a loaded seed pack."
+	icon_state = "borg_hardware_apparatus"
+	storable = list(/obj/item/seeds)
+
+/obj/item/borg/apparatus/service/seeder/update_overlays()
+	. = ..()
+	var/mutable_appearance/arm = mutable_appearance(icon, "borg_hardware_apparatus_arm1")
+	if(stored)
+		var/mutable_appearance/stored_copy = new /mutable_appearance(stored)
+		stored_copy.layer = FLOAT_LAYER
+		stored_copy.plane = FLOAT_PLANE
+		. += stored_copy
+	. += arm
 
 /// allows medical cyborgs to manipulate organs without hands
 /obj/item/borg/apparatus/organ_storage
