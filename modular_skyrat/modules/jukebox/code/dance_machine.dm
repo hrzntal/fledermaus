@@ -12,7 +12,7 @@
 	var/list/songs = list()
 	var/datum/track/selection = null
 	/// Volume of the songs played
-	var/volume = 100
+	var/volume = 50
 
 /obj/machinery/jukebox/disco
 	name = "radiant dance machine mark IV"
@@ -88,14 +88,14 @@
 	data["songs"] = list()
 	for(var/datum/track/S in SSjukeboxes.songs)
 		var/list/track_data = list(
-			name = S.song_name
+			name = "[S.song_artist] - [S.song_title]"
 		)
 		data["songs"] += list(track_data)
 	data["track_selected"] = null
 	data["track_length"] = null
 	data["track_beat"] = null
 	if(selection)
-		data["track_selected"] = selection.song_name
+		data["track_selected"] = "[selection.song_artist] - [selection.song_title]"
 		data["track_length"] = DisplayTimeText(selection.song_length)
 		data["track_beat"] = selection.song_beat
 	data["volume"] = volume
@@ -125,7 +125,7 @@
 				return
 			var/list/available = list()
 			for(var/datum/track/S in SSjukeboxes.songs)
-				available[S.song_name] = S
+				available["[S.song_artist] - [S.song_title]"] = S
 			var/selected = params["track"]
 			if(QDELETED(src) || !selected || !istype(available[selected], /datum/track))
 				return
@@ -218,8 +218,6 @@
 				S.pixel_y = 7
 				S.forceMove(get_turf(src))
 		sleep(0.7 SECONDS)
-	if(selection.song_name == "Engineering's Ultimate High-Energy Hustle")
-		sleep(28 SECONDS)
 	for(var/s in sparkles)
 		var/obj/effect/overlay/sparkles/reveal = s
 		reveal.alpha = 255

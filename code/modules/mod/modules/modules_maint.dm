@@ -84,17 +84,19 @@
 
 /obj/item/mod/module/visor/rave/Initialize(mapload)
 	. = ..()
-	var/list/tracks = flist("[global.config.directory]/jukebox_music/sounds/")
-	for(var/sound in tracks)
+
+	var/list/tracks_to_load = flist("[global.config.directory]/jukebox_music/sounds/")
+	for(var/song_file in tracks_to_load)
 		var/datum/track/track = new()
-		track.song_path = file("[global.config.directory]/jukebox_music/sounds/[sound]")
-		var/list/sound_params = splittext(sound,"+")
-		if(length(sound_params) != 3)
+		track.song_path = file("[global.config.directory]/jukebox_music/sounds/[song_file]")
+		var/list/song_data = splittext(song_file,"+")
+		if(song_data.len != 4)
 			continue
-		track.song_name = sound_params[1]
-		track.song_length = text2num(sound_params[2])
-		track.song_beat = text2num(sound_params[3])
-		songs[track.song_name] = track
+		track.song_artist = song_data[1]
+		track.song_title = song_data[2]
+		track.song_length = (text2num(song_data[3]) SECONDS)
+		track.song_beat = ((text2num(song_data[4]) / 60) SECONDS)
+		songs["[track.song_artist] - [track.song_title]"] = track
 	if(length(songs))
 		var/song_name = pick(songs)
 		selection = songs[song_name]
@@ -134,7 +136,7 @@
 /obj/item/mod/module/visor/rave/get_configuration()
 	. = ..()
 	if(length(songs))
-		.["selection"] = add_ui_configuration("Song", "list", selection.song_name, clean_songs())
+		.["selection"] = add_ui_configuration("Song", "list", "[selection.song_artist] - [selection.song_title]", clean_songs())
 
 /obj/item/mod/module/visor/rave/configure_edit(key, value)
 	switch(key)
