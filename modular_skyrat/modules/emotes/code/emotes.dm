@@ -105,6 +105,14 @@
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/awoo.ogg'
 
+/datum/emote/living/awoo
+	key = "awoo2"
+	key_third_person = "awoos"
+	message = "lets out an awoo!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/long_awoo.ogg'
+
 /datum/emote/living/nya
 	key = "nya"
 	key_third_person = "nyas"
@@ -402,6 +410,14 @@
 	vary = TRUE
 	sound = 'modular_skyrat/modules/emotes/sound/voice/woof.ogg'
 
+/datum/emote/living/woof2
+	key = "woof2"
+	key_third_person = "woofs"
+	message = "lets out a woof."
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/woof2.ogg'
+
 /datum/emote/living/baa
 	key = "baa"
 	key_third_person = "baas"
@@ -519,3 +535,86 @@
 	emote_type = EMOTE_AUDIBLE
 	vary = TRUE
 	sound = 'sound/effects/glassbash.ogg'
+
+//Horizon Hyena's
+/datum/emote/living/whoop
+	key = "whoop"
+	key_third_person = "whoops"
+	message = "lets out a whoop!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+
+/datum/emote/living/whoop/get_sound(mob/living/user)
+	return pick(
+		'modular_skyrat/modules/emotes/sound/voice/hyena/whoop.ogg',
+		'modular_skyrat/modules/emotes/sound/voice/hyena/whoop_long.ogg',
+	)
+
+/datum/emote/living/hyena_laugh
+	key = "hlaugh"
+	message = "laughs like a hyena!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound_volume = 25
+
+/datum/emote/living/hyena_laugh/get_sound(mob/living/user)
+	return pick(
+		'modular_skyrat/modules/emotes/sound/voice/hyena/laugh_bright.ogg',
+		'modular_skyrat/modules/emotes/sound/voice/hyena/laugh_low.ogg',
+		'modular_skyrat/modules/emotes/sound/voice/hyena/laugh_short.ogg',
+		'modular_skyrat/modules/emotes/sound/voice/hyena/laugh_twice.ogg',
+		'modular_skyrat/modules/emotes/sound/voice/hyena/laugh1.ogg',
+		'modular_skyrat/modules/emotes/sound/voice/hyena/laugh2.ogg',
+	)
+
+//Fed's Emotes
+/datum/emote/living/catchirp
+	key = "catchirp"
+	message = "chirps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/catchirp.ogg'
+
+/datum/emote/living/felinehiss
+	key = "fhiss"
+	key_third_person = "fhisses"
+	message = "hisses!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/feline_hiss.ogg'
+
+/datum/emote/living/rawr
+	key = "rawr"
+	key_third_person = "rawrs"
+	message = "rawrs!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/rawr.ogg'
+
+/datum/emote/living/whine
+	key = "whine"
+	message = "whines!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/whine1.ogg'
+
+/datum/emote/living/whine2
+	key = "whine2"
+	message = "whines!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/whine2.ogg'
+
+/datum/emote/living/yelp
+	key = "yelp"
+	message = "yelps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/yelp1.ogg'
+
+/datum/emote/living/yelp2
+	key = "yelp2"
+	message = "yelps!"
+	emote_type = EMOTE_AUDIBLE
+	vary = TRUE
+	sound = 'modular_skyrat/modules/emotes/sound/voice/yelp2.ogg'
